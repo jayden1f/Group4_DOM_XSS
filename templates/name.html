@@ -1,0 +1,21 @@
+<title>Enter your name</title>
+
+Welcome 
+
+<script>
+    //Prompt the user for input
+    var name = prompt("Hey, what's your name?");
+
+    //Update the url and add ?context=<name>
+    window.history.replaceState(null, null, "?context="+name);
+    
+    //Write the name to the document
+    if(document.location.href.indexOf("context=") != -1){
+        document.write(decodeURIComponent(document.location.href.substring(document.location.href.indexOf("context=")+8)))
+        //The source is document.location.href
+        //The sink is document.write
+    }
+</script>
+
+<p>Enter sample text here</p>
+

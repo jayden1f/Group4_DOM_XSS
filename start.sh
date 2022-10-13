@@ -1,0 +1,1 @@
+docker build --tag flask-app . && docker run -dp 8000:5000 flask-app

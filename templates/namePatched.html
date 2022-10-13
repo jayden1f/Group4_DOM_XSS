@@ -1,0 +1,50 @@
+<title>Enter your name</title>
+
+Welcome 
+
+<!--PATCH-->
+<script>
+    function sanitize(input){
+        safe = "";
+        for (let chr of input){
+            if(chr == '<'){
+                safe += "&lt";
+            }
+            else if(chr == '>'){
+                safe += "&gt";
+            }
+            else if(chr == '\"'){
+                safe += "&quot";
+            }
+            else if(chr == '\''){
+                safe += "&apos;";
+            }
+            else if(chr == '&'){
+                safe += "&amp";
+            }
+            else{
+                safe += chr;
+            }
+        }
+        return safe;
+    }
+</script>
+
+<script>
+    //Prompt the user for input
+    var name = prompt("Hey, what's your name?");
+
+    //Update the url and add ?context=<name>
+    window.history.replaceState(null, null, "?context="+name);
+    
+    //Write the name to the document
+    if(document.location.href.indexOf("context=") != -1){
+        document.write(sanitize(decodeURIComponent(document.location.href.substring(document.location.href.indexOf("context=")+8))))
+        //             sanitize(input) <- the input is being sanitized here
+        //The source is document.location.href
+        //The sink is document.write
+    }
+</script>
+
+<p>Enter sample text here</p>
+
